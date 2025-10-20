@@ -3,71 +3,669 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boda de Eduardo y Ester</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Eduardo & Ester - Nuestra Boda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #fff;
+            background-color: #002D1E;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 45, 30, 0.7), rgba(0, 192, 132, 0.4));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: slideDown 1.5s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            font-family: 'Dancing Script', cursive;
+            color: #00C684;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        #countdown {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            padding: 20px 40px;
+            background: rgba(0, 99, 64, 0.8);
+            border-radius: 15px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 192, 132, 0.3);
+        }
+
+        .countdown-numbers {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00C684;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2rem;
+            color: #00C684;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, #002D1E 0%, #003d29 100%);
+        }
+
+        section:nth-child(even) {
+            background: linear-gradient(180deg, #003d29 0%, #002D1E 100%);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #00C684;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #009362, transparent);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #00C684;
+            margin-bottom: 50px;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Invitation Video */
+        .invitacion {
+            padding: 100px 20px;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 192, 132, 0.3);
+            animation: slideUp 1s ease;
+            background: #006040;
+            padding: 10px;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            width: 100%;
+            height: 500px;
+            border-radius: 15px;
+        }
+
+        /* Event Details */
+        .detalles {
+            padding: 100px 20px;
+        }
+
+        .eventos-container {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .evento {
+            background: linear-gradient(135deg, #006040, #004d33);
+            padding: 40px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .evento::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #009362, #00C684);
+        }
+
+        .evento:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 192, 132, 0.4);
+        }
+
+        .evento-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .evento h3 {
+            font-size: 1.8rem;
+            color: #00C684;
+            margin-bottom: 20px;
+        }
+
+        .evento p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .evento-time {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00C684;
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #009362, #00C684);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 15px 5px;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 192, 132, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 192, 132, 0.5);
+        }
+
+        /* Confirmation Section */
+        .confirmacion {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #003d29, #006040);
+        }
+
+        .confirmacion-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 50px;
+            background: rgba(0, 96, 64, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .confirmacion-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            font-size: 1.2rem;
+            padding: 15px 40px;
+        }
+
+        .whatsapp::before {
+            content: '📱 ';
+            font-size: 1.5rem;
+        }
+
+        /* Songs Section */
+        .canciones {
+            padding: 100px 20px;
+        }
+
+        .canciones-container {
+            display: flex;
+            gap: 40px;
+            max-width: 900px;
+            margin: 50px auto 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .audio-player {
+            background: linear-gradient(135deg, #006040, #004d33);
+            padding: 40px;
+            border-radius: 20px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 400px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            transition: transform 0.3s;
+        }
+
+        .audio-player:hover {
+            transform: translateY(-5px);
+        }
+
+        .audio-player h3 {
+            color: #00C684;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        button {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #009362, #00C684);
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 192, 132, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 192, 132, 0.5);
+        }
+
+        button::before {
+            content: '🎵 ';
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 20px;
+            background: #002D1E;
+            text-align: center;
+            border-top: 3px solid #006040;
+        }
+
+        footer p {
+            font-size: 1.5rem;
+            font-family: 'Dancing Script', cursive;
+            color: #00C684;
+        }
+
+        .hearts {
+            font-size: 2rem;
+            margin: 20px 0;
+            animation: pulse 2s infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 0.7; }
+        }
+
+        @keyframes slideDown {
+            from { 
+                transform: translateY(-100px); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(50px); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { 
+                font-size: 3rem; 
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .countdown-numbers {
+                gap: 15px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+            
+            .eventos-container {
+                flex-direction: column;
+            }
+            
+            .video-container iframe,
+            .video-container video {
+                height: 300px;
+            }
+            
+            .confirmacion-content {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #002D1E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-heart {
+            font-size: 4rem;
+            animation: pulse 1s infinite;
+        }
+    </style>
 </head>
 <body>
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-heart">💚</div>
+    </div>
+
     <header class="hero">
         <div class="overlay"></div>
         <img src="assets/foto-novios.jpg" alt="Eduardo y Ester" class="hero-img">
         <div class="hero-content">
             <h1>Eduardo & Ester</h1>
             <p>¡Nos casamos!</p>
-            <div id="countdown"></div>
+            <div id="countdown">
+                <p>Faltan:</p>
+                <div class="countdown-numbers">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">0</div>
+                        <div class="countdown-label">Días</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">0</div>
+                        <div class="countdown-label">Horas</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">0</div>
+                        <div class="countdown-label">Min</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">0</div>
+                        <div class="countdown-label">Seg</div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="scroll-indicator"></div>
     </header>
 
     <section class="invitacion">
-        <h2>Invitación Especial</h2>
+        <h2 class="section-title">Invitación Especial</h2>
+        <p class="section-subtitle">Un mensaje del corazón</p>
         <div class="video-container">
-            <!-- Embed de YouTube: Reemplaza con tu embed code. Ejemplo placeholder -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/TU_VIDEO_ID" title="Invitación a nuestra boda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <!-- Si es archivo local: <video controls><source src="assets/invitacion.mp4" type="video/mp4"></video> -->
+            <!-- Reemplaza TU_VIDEO_ID con el ID de tu video de YouTube -->
+            <iframe src="https://www.youtube.com/embed/TU_VIDEO_ID" title="Invitación a nuestra boda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- Si es archivo local, descomenta esta línea y comenta la de arriba:
+            <video controls><source src="assets/invitacion.mp4" type="video/mp4"></video>
+            -->
         </div>
     </section>
 
     <section class="detalles">
-        <h2>Detalles de la Boda</h2>
-        <div class="evento">
-            <h3>Discurso Bíblico de Consejos Matrimoniales</h3>
-            <p>Domingo 30 de noviembre de 2025 - 2:00 PM</p>
-            <p>Salón del Reino de los Testigos de Jehová Congregación El Carmen, Ahuachapán<br>Colonia el Carmen I Llano de la Laguna Ahuachapan</p>
-            <a href="https://maps.app.goo.gl/WkYzowbMirvKBEvU7" target="_blank" class="btn">Ver en Maps</a>
-            <p>Transmisión por Zoom: <a href="TU_ENLACE_ZOOM" target="_blank">Unirse aquí</a></p> <!-- Reemplaza con el enlace real -->
-        </div>
-        <div class="evento">
-            <h3>Recepción</h3>
-            <p>Domingo 30 de noviembre de 2025 - 4:00 PM</p>
-            <p>Calle Ashapuco Finca San Luis Bonanza</p>
-            <a href="https://maps.app.goo.gl/pfAQDc9Y3wBMEAez7" target="_blank" class="btn">Ver en Maps</a>
+        <h2 class="section-title">Detalles de la Celebración</h2>
+        <p class="section-subtitle">Será un honor contar con tu presencia</p>
+        <div class="eventos-container">
+            <div class="evento">
+                <div class="evento-icon">📖</div>
+                <h3>Discurso Bíblico de Consejos Matrimoniales</h3>
+                <p class="evento-time">2:00 PM</p>
+                <p><strong>Domingo 30 de noviembre de 2025</strong></p>
+                <p>Salón del Reino de los Testigos de Jehová<br>Congregación El Carmen, Ahuachapán<br>Colonia el Carmen I<br>Llano de la Laguna</p>
+                <a href="https://maps.app.goo.gl/WkYzowbMirvKBEvU7" target="_blank" class="btn">📍 Ver en Maps</a>
+                <a href="TU_ENLACE_ZOOM" target="_blank" class="btn">💻 Unirse por Zoom</a>
+            </div>
+            <div class="evento">
+                <div class="evento-icon">🎉</div>
+                <h3>Recepción</h3>
+                <p class="evento-time">4:00 PM</p>
+                <p><strong>Domingo 30 de noviembre de 2025</strong></p>
+                <p>Calle Ashapuco<br>Finca San Luis Bonanza</p>
+                <a href="https://maps.app.goo.gl/pfAQDc9Y3wBMEAez7" target="_blank" class="btn">📍 Ver en Maps</a>
+            </div>
         </div>
     </section>
 
     <section class="confirmacion">
-        <h2>Confirma tu Asistencia</h2>
-        <p>¡Esperamos verte! Envía un mensaje por WhatsApp para confirmar.</p>
-        <a href="https://wa.me/50370424069?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Eduardo%20y%20Ester." target="_blank" class="btn whatsapp">Confirmar por WhatsApp</a>
+        <h2 class="section-title">Confirma tu Asistencia</h2>
+        <div class="confirmacion-content">
+            <p>Tu presencia es el mejor regalo que podemos recibir. Por favor, confírmanos tu asistencia enviando un mensaje por WhatsApp.</p>
+            <a href="https://wa.me/50370424069?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Eduardo%20y%20Ester.%20💚" target="_blank" class="btn whatsapp">Confirmar por WhatsApp</a>
+        </div>
     </section>
 
     <section class="canciones">
-        <h2>Nuestras Canciones Especiales</h2>
-        <div class="audio-player">
-            <button onclick="playAudio('cancion1')">Escuchar Canción 1</button>
-            <audio id="cancion1" src="assets/cancion1.mp3"></audio>
-        </div>
-        <div class="audio-player">
-            <button onclick="playAudio('cancion2')">Escuchar Canción 2</button>
-            <audio id="cancion2" src="assets/cancion2.mp3"></audio>
+        <h2 class="section-title">Nuestras Canciones Especiales</h2>
+        <p class="section-subtitle">La banda sonora de nuestro amor</p>
+        <div class="canciones-container">
+            <div class="audio-player">
+                <h3>Canción 1</h3>
+                <button onclick="playAudio('cancion1')">Escuchar</button>
+                <audio id="cancion1" src="assets/cancion1.mp3"></audio>
+            </div>
+            <div class="audio-player">
+                <h3>Canción 2</h3>
+                <button onclick="playAudio('cancion2')">Escuchar</button>
+                <audio id="cancion2" src="assets/cancion2.mp3"></audio>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>Con amor, Eduardo y Ester ♥</p>
+        <div class="hearts">💚 💚 💚</div>
+        <p>Con amor, Eduardo y Ester</p>
+        <p style="font-size: 1rem; font-family: 'Lato', sans-serif; margin-top: 20px; color: #009362;">30 de noviembre de 2025</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Page loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('pageLoader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Countdown a la boda
+        function countdown() {
+            const weddingDate = new Date('2025-11-30T14:00:00');
+            const now = new Date();
+            const diff = weddingDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.getElementById('countdown').innerHTML = '<p style="font-size: 2rem;">¡El día ha llegado! 💚</p>';
+            }
+        }
+        setInterval(countdown, 1000);
+        countdown();
+
+        // Reproducir audio
+        function playAudio(id) {
+            const audio = document.getElementById(id);
+            const allAudios = document.querySelectorAll('audio');
+            
+            allAudios.forEach(a => {
+                if (a.id !== id) {
+                    a.pause();
+                    a.currentTime = 0;
+                }
+            });
+            
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
