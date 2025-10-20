@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda de Eduardo y Ester</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <div class="overlay"></div>
+        <img src="assets/foto-novios.jpg" alt="Eduardo y Ester" class="hero-img">
+        <div class="hero-content">
+            <h1>Eduardo & Ester</h1>
+            <p>¡Nos casamos!</p>
+            <div id="countdown"></div>
+        </div>
+    </header>
+
+    <section class="invitacion">
+        <h2>Invitación Especial</h2>
+        <div class="video-container">
+            <!-- Embed de YouTube: Reemplaza con tu embed code. Ejemplo placeholder -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/TU_VIDEO_ID" title="Invitación a nuestra boda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- Si es archivo local: <video controls><source src="assets/invitacion.mp4" type="video/mp4"></video> -->
+        </div>
+    </section>
+
+    <section class="detalles">
+        <h2>Detalles de la Boda</h2>
+        <div class="evento">
+            <h3>Discurso Bíblico de Consejos Matrimoniales</h3>
+            <p>Domingo 30 de noviembre de 2025 - 2:00 PM</p>
+            <p>Salón del Reino de los Testigos de Jehová Congregación El Carmen, Ahuachapán<br>Colonia el Carmen I Llano de la Laguna Ahuachapan</p>
+            <a href="https://maps.app.goo.gl/WkYzowbMirvKBEvU7" target="_blank" class="btn">Ver en Maps</a>
+            <p>Transmisión por Zoom: <a href="TU_ENLACE_ZOOM" target="_blank">Unirse aquí</a></p> <!-- Reemplaza con el enlace real -->
+        </div>
+        <div class="evento">
+            <h3>Recepción</h3>
+            <p>Domingo 30 de noviembre de 2025 - 4:00 PM</p>
+            <p>Calle Ashapuco Finca San Luis Bonanza</p>
+            <a href="https://maps.app.goo.gl/pfAQDc9Y3wBMEAez7" target="_blank" class="btn">Ver en Maps</a>
+        </div>
+    </section>
+
+    <section class="confirmacion">
+        <h2>Confirma tu Asistencia</h2>
+        <p>¡Esperamos verte! Envía un mensaje por WhatsApp para confirmar.</p>
+        <a href="https://wa.me/50370424069?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Eduardo%20y%20Ester." target="_blank" class="btn whatsapp">Confirmar por WhatsApp</a>
+    </section>
+
+    <section class="canciones">
+        <h2>Nuestras Canciones Especiales</h2>
+        <div class="audio-player">
+            <button onclick="playAudio('cancion1')">Escuchar Canción 1</button>
+            <audio id="cancion1" src="assets/cancion1.mp3"></audio>
+        </div>
+        <div class="audio-player">
+            <button onclick="playAudio('cancion2')">Escuchar Canción 2</button>
+            <audio id="cancion2" src="assets/cancion2.mp3"></audio>
+        </div>
+    </section>
+
+    <footer>
+        <p>Con amor, Eduardo y Ester ♥</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
