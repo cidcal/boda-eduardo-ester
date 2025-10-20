@@ -6,7 +6,7 @@
     <title>Eduardo & Ester - Nuestra Boda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,14 +16,28 @@
 
         body {
             font-family: 'Lato', sans-serif;
-            color: #fff;
-            background-color: #002D1E;
+            color: #2c3e36;
+            background: linear-gradient(135deg, #f8fdfb 0%, #f0f9f4 50%, #e8f5ed 100%);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
+        }
+
+        /* Watercolor Background Pattern */
+        .watercolor-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 198, 132, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 147, 98, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 96, 64, 0.05) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         /* Hero Section */
@@ -35,67 +49,82 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9f4 100%);
         }
 
-        .hero-img {
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 198, 132, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
         }
 
-        .overlay {
+        .hero::after {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 45, 30, 0.7), rgba(0, 192, 132, 0.4));
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 147, 98, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            animation: slideDown 1.5s ease-out;
+            animation: fadeInUp 1.5s ease-out;
         }
 
         .hero-content h1 {
-            font-size: 5rem;
-            font-family: 'Dancing Script', cursive;
-            color: #00C684;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+            font-size: 6rem;
+            font-family: 'Great Vibes', cursive;
+            background: linear-gradient(135deg, #006040 0%, #00C684 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0, 96, 64, 0.1);
         }
 
         .hero-content p {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 1.4rem;
+            margin-bottom: 40px;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
+            color: #006040;
         }
 
         #countdown {
-            font-size: 1.5rem;
-            margin-top: 30px;
-            padding: 20px 40px;
-            background: rgba(0, 99, 64, 0.8);
-            border-radius: 15px;
+            margin-top: 40px;
+            padding: 30px 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
             display: inline-block;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 192, 132, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 96, 64, 0.15);
+            border: 1px solid rgba(0, 198, 132, 0.2);
+        }
+
+        .countdown-title {
+            font-size: 1rem;
+            color: #006040;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
         .countdown-numbers {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             justify-content: center;
-            margin-top: 15px;
         }
 
         .countdown-item {
@@ -107,30 +136,136 @@
         .countdown-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #00C684;
+            background: linear-gradient(135deg, #006040 0%, #00C684 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .countdown-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 5px;
+            margin-top: 8px;
+            color: #006040;
+            font-weight: 400;
         }
 
         /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
             z-index: 2;
+            color: #009362;
+            font-size: 2rem;
         }
 
-        .scroll-indicator::before {
-            content: '↓';
-            font-size: 2rem;
-            color: #00C684;
+        /* Photo Section - Nueva sección delicada */
+        .photo-section {
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fdfb 100%);
+            overflow: hidden;
+        }
+
+        .photo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, #f0f9f4 0%, transparent 100%);
+        }
+
+        .photo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            animation: fadeInScale 1.5s ease-out;
+        }
+
+        .photo-frame {
+            position: relative;
+            padding: 20px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 
+                0 20px 60px rgba(0, 96, 64, 0.12),
+                0 0 0 1px rgba(0, 198, 132, 0.1);
+            overflow: hidden;
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 198, 132, 0.03) 0%, transparent 50%);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .photo-decorations {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.6;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .deco-1 {
+            top: -30px;
+            left: -30px;
+            animation-delay: 0s;
+        }
+
+        .deco-2 {
+            top: -20px;
+            right: -20px;
+            animation-delay: 1s;
+        }
+
+        .deco-3 {
+            bottom: -30px;
+            left: -20px;
+            animation-delay: 2s;
+        }
+
+        .deco-4 {
+            bottom: -20px;
+            right: -30px;
+            animation-delay: 1.5s;
+        }
+
+        .couple-names {
+            margin-top: 40px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #006040 0%, #00C684 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .couple-date {
+            font-size: 1.1rem;
+            color: #006040;
+            letter-spacing: 3px;
+            margin-top: 15px;
+            font-weight: 300;
         }
 
         /* Sections */
@@ -138,17 +273,17 @@
             padding: 100px 20px;
             text-align: center;
             position: relative;
-            background: linear-gradient(180deg, #002D1E 0%, #003d29 100%);
+            background: #ffffff;
         }
 
         section:nth-child(even) {
-            background: linear-gradient(180deg, #003d29 0%, #002D1E 100%);
+            background: linear-gradient(180deg, #f8fdfb 0%, #ffffff 100%);
         }
 
         .section-title {
             font-size: 3rem;
-            color: #00C684;
-            margin-bottom: 20px;
+            color: #006040;
+            margin-bottom: 15px;
             position: relative;
             display: inline-block;
         }
@@ -156,25 +291,33 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #009362, transparent);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00C684, transparent);
         }
 
         .section-subtitle {
-            font-size: 1.2rem;
-            color: #00C684;
-            margin-bottom: 50px;
+            font-size: 1.1rem;
+            color: #009362;
+            margin-bottom: 60px;
             font-weight: 300;
             font-style: italic;
+        }
+
+        .floral-divider {
+            text-align: center;
+            font-size: 2rem;
+            margin: 30px 0;
+            opacity: 0.4;
         }
 
         /* Invitation Video */
         .invitacion {
             padding: 100px 20px;
+            background: linear-gradient(135deg, #f8fdfb 0%, #ffffff 100%);
         }
 
         .video-container {
@@ -182,27 +325,29 @@
             margin: 0 auto;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 192, 132, 0.3);
-            animation: slideUp 1s ease;
-            background: #006040;
-            padding: 10px;
+            box-shadow: 0 20px 60px rgba(0, 96, 64, 0.15);
+            animation: fadeInUp 1s ease;
+            background: white;
+            padding: 15px;
+            border: 1px solid rgba(0, 198, 132, 0.1);
         }
 
         .video-container iframe,
         .video-container video {
             width: 100%;
             height: 500px;
-            border-radius: 15px;
+            border-radius: 12px;
         }
 
         /* Event Details */
         .detalles {
             padding: 100px 20px;
+            background: white;
         }
 
         .eventos-container {
             display: flex;
-            gap: 40px;
+            gap: 50px;
             max-width: 1200px;
             margin: 0 auto;
             flex-wrap: wrap;
@@ -210,16 +355,16 @@
         }
 
         .evento {
-            background: linear-gradient(135deg, #006040, #004d33);
-            padding: 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fdfb 100%);
+            padding: 50px 40px;
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
             max-width: 500px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 96, 64, 0.1);
+            transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(0, 198, 132, 0.15);
         }
 
         .evento::before {
@@ -228,95 +373,119 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #009362, #00C684);
+            height: 4px;
+            background: linear-gradient(90deg, #006040, #00C684, #006040);
+            border-radius: 25px 25px 0 0;
         }
 
         .evento:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 192, 132, 0.4);
+            box-shadow: 0 25px 60px rgba(0, 96, 64, 0.18);
         }
 
         .evento-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
         }
 
         .evento h3 {
             font-size: 1.8rem;
-            color: #00C684;
-            margin-bottom: 20px;
+            color: #006040;
+            margin-bottom: 25px;
+            line-height: 1.3;
         }
 
         .evento p {
             margin: 15px 0;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
+            color: #2c3e36;
         }
 
         .evento-time {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: #00C684;
-            margin: 20px 0;
+            color: #009362;
+            margin: 25px 0;
+            padding: 10px;
+            background: rgba(0, 198, 132, 0.08);
+            border-radius: 10px;
         }
 
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background: linear-gradient(135deg, #009362, #00C684);
+            background: linear-gradient(135deg, #006040, #00C684);
             color: #fff;
             text-decoration: none;
             border-radius: 50px;
-            margin: 15px 5px;
+            margin: 10px 5px;
             transition: all 0.3s;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(0, 192, 132, 0.3);
+            font-size: 0.9rem;
+            box-shadow: 0 8px 20px rgba(0, 96, 64, 0.2);
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 192, 132, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 96, 64, 0.3);
         }
 
         /* Confirmation Section */
         .confirmacion {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #003d29, #006040);
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #f0f9f4 0%, #e8f5ed 100%);
+            position: relative;
+        }
+
+        .confirmacion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 198, 132, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(0, 147, 98, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .confirmacion-content {
             max-width: 700px;
             margin: 0 auto;
-            padding: 50px;
-            background: rgba(0, 96, 64, 0.5);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            padding: 60px 50px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 96, 64, 0.12);
+            position: relative;
+            border: 1px solid rgba(0, 198, 132, 0.15);
         }
 
         .confirmacion-content p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            line-height: 1.8;
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            line-height: 1.9;
+            color: #2c3e36;
         }
 
         .whatsapp {
             background: linear-gradient(135deg, #25D366, #128C7E);
-            font-size: 1.2rem;
-            padding: 15px 40px;
+            font-size: 1.1rem;
+            padding: 16px 45px;
         }
 
         .whatsapp::before {
-            content: '📱 ';
-            font-size: 1.5rem;
+            content: '💬 ';
+            font-size: 1.3rem;
         }
 
         /* Songs Section */
         .canciones {
             padding: 100px 20px;
+            background: white;
         }
 
         .canciones-container {
@@ -329,29 +498,31 @@
         }
 
         .audio-player {
-            background: linear-gradient(135deg, #006040, #004d33);
-            padding: 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fdfb 100%);
+            padding: 45px 40px;
             border-radius: 20px;
             flex: 1;
-            min-width: 250px;
+            min-width: 280px;
             max-width: 400px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            transition: transform 0.3s;
+            box-shadow: 0 15px 40px rgba(0, 96, 64, 0.1);
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 198, 132, 0.15);
         }
 
         .audio-player:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 96, 64, 0.15);
         }
 
         .audio-player h3 {
-            color: #00C684;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+            color: #006040;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
         }
 
         button {
-            padding: 15px 35px;
-            background: linear-gradient(135deg, #009362, #00C684);
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #006040, #00C684);
             border: none;
             color: #fff;
             cursor: pointer;
@@ -361,30 +532,31 @@
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(0, 192, 132, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 96, 64, 0.2);
         }
 
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 192, 132, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 96, 64, 0.3);
         }
 
         button::before {
-            content: '🎵 ';
+            content: '♪ ';
+            font-size: 1.2rem;
         }
 
         /* Footer */
         footer {
-            padding: 60px 20px;
-            background: #002D1E;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8fdfb 0%, #f0f9f4 100%);
             text-align: center;
-            border-top: 3px solid #006040;
+            border-top: 1px solid rgba(0, 198, 132, 0.2);
         }
 
         footer p {
-            font-size: 1.5rem;
-            font-family: 'Dancing Script', cursive;
-            color: #00C684;
+            font-size: 1.8rem;
+            font-family: 'Great Vibes', cursive;
+            color: #006040;
         }
 
         .hearts {
@@ -393,15 +565,18 @@
             animation: pulse 2s infinite;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 0.7; }
+        .footer-date {
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            margin-top: 25px;
+            color: #009362;
+            letter-spacing: 2px;
         }
 
-        @keyframes slideDown {
+        /* Animations */
+        @keyframes fadeInUp {
             from { 
-                transform: translateY(-100px); 
+                transform: translateY(40px); 
                 opacity: 0; 
             }
             to { 
@@ -410,13 +585,13 @@
             }
         }
 
-        @keyframes slideUp {
+        @keyframes fadeInScale {
             from { 
-                transform: translateY(50px); 
+                transform: scale(0.9); 
                 opacity: 0; 
             }
             to { 
-                transform: translateY(0); 
+                transform: scale(1); 
                 opacity: 1; 
             }
         }
@@ -436,41 +611,20 @@
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
+                opacity: 0.6;
             }
             50% {
-                transform: scale(1.1);
+                transform: scale(1.15);
+                opacity: 1;
             }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content h1 { 
-                font-size: 3rem; 
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
             }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .countdown-numbers {
-                gap: 15px;
-            }
-            
-            .countdown-number {
-                font-size: 1.8rem;
-            }
-            
-            .eventos-container {
-                flex-direction: column;
-            }
-            
-            .video-container iframe,
-            .video-container video {
-                height: 300px;
-            }
-            
-            .confirmacion-content {
-                padding: 30px 20px;
+            50% {
+                transform: translateY(-15px) rotate(5deg);
             }
         }
 
@@ -481,7 +635,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #002D1E;
+            background: linear-gradient(135deg, #f8fdfb 0%, #f0f9f4 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -494,25 +648,82 @@
             pointer-events: none;
         }
 
+        .loader-content {
+            text-align: center;
+        }
+
         .loader-heart {
             font-size: 4rem;
-            animation: pulse 1s infinite;
+            animation: pulse 1.2s infinite;
+            color: #00C684;
+        }
+
+        .loader-text {
+            margin-top: 20px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #006040;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { 
+                font-size: 3.5rem; 
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .countdown-numbers {
+                gap: 20px;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
+            #countdown {
+                padding: 25px 30px;
+            }
+            
+            .eventos-container {
+                flex-direction: column;
+            }
+            
+            .video-container iframe,
+            .video-container video {
+                height: 300px;
+            }
+            
+            .confirmacion-content {
+                padding: 40px 25px;
+            }
+
+            .photo-decorations {
+                font-size: 2rem;
+            }
+
+            .couple-names {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="page-loader" id="pageLoader">
-        <div class="loader-heart">💚</div>
+        <div class="loader-content">
+            <div class="loader-heart">🌿</div>
+            <div class="loader-text">Eduardo & Ester</div>
+        </div>
     </div>
 
     <header class="hero">
-        <div class="overlay"></div>
-        <img src="assets/foto-novios.jpg" alt="Eduardo y Ester" class="hero-img">
         <div class="hero-content">
             <h1>Eduardo & Ester</h1>
             <p>¡Nos casamos!</p>
             <div id="countdown">
-                <p>Faltan:</p>
+                <p class="countdown-title">Faltan</p>
                 <div class="countdown-numbers">
                     <div class="countdown-item">
                         <div class="countdown-number" id="days">0</div>
@@ -533,12 +744,31 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator"></div>
+        <div class="scroll-indicator">↓</div>
     </header>
+
+    <section class="photo-section">
+        <div class="watercolor-bg"></div>
+        <div class="photo-container">
+            <div class="photo-decorations deco-1">🌿</div>
+            <div class="photo-decorations deco-2">🍃</div>
+            <div class="photo-decorations deco-3">🌸</div>
+            <div class="photo-decorations deco-4">🌿</div>
+            <div class="photo-frame">
+                <img src="assets/foto-novios.jpg" alt="Eduardo y Ester" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display: none; align-items: center; justify-content: center; min-height: 400px; background: linear-gradient(135deg, #f0f9f4, #e8f5ed); border-radius: 20px; color: #006040; font-size: 1.2rem;">
+                    <p>📸 Coloca aquí la foto de Eduardo y Ester<br><small style="font-size: 0.9rem;">assets/foto-novios.jpg</small></p>
+                </div>
+            </div>
+            <h2 class="couple-names">Eduardo & Ester</h2>
+            <p class="couple-date">30 · NOVIEMBRE · 2025</p>
+        </div>
+    </section>
 
     <section class="invitacion">
         <h2 class="section-title">Invitación Especial</h2>
         <p class="section-subtitle">Un mensaje del corazón</p>
+        <div class="floral-divider">❀</div>
         <div class="video-container">
             <!-- Reemplaza TU_VIDEO_ID con el ID de tu video de YouTube -->
             <iframe src="https://www.youtube.com/embed/TU_VIDEO_ID" title="Invitación a nuestra boda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -551,6 +781,7 @@
     <section class="detalles">
         <h2 class="section-title">Detalles de la Celebración</h2>
         <p class="section-subtitle">Será un honor contar con tu presencia</p>
+        <div class="floral-divider">❀</div>
         <div class="eventos-container">
             <div class="evento">
                 <div class="evento-icon">📖</div>
@@ -574,6 +805,7 @@
 
     <section class="confirmacion">
         <h2 class="section-title">Confirma tu Asistencia</h2>
+        <div class="floral-divider">❀</div>
         <div class="confirmacion-content">
             <p>Tu presencia es el mejor regalo que podemos recibir. Por favor, confírmanos tu asistencia enviando un mensaje por WhatsApp.</p>
             <a href="https://wa.me/50370424069?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Eduardo%20y%20Ester.%20💚" target="_blank" class="btn whatsapp">Confirmar por WhatsApp</a>
@@ -583,6 +815,7 @@
     <section class="canciones">
         <h2 class="section-title">Nuestras Canciones Especiales</h2>
         <p class="section-subtitle">La banda sonora de nuestro amor</p>
+        <div class="floral-divider">❀</div>
         <div class="canciones-container">
             <div class="audio-player">
                 <h3>Canción 1</h3>
@@ -598,9 +831,9 @@
     </section>
 
     <footer>
-        <div class="hearts">💚 💚 💚</div>
+        <div class="hearts">🌿 💚 🌿</div>
         <p>Con amor, Eduardo y Ester</p>
-        <p style="font-size: 1rem; font-family: 'Lato', sans-serif; margin-top: 20px; color: #009362;">30 de noviembre de 2025</p>
+        <p class="footer-date">30 de noviembre de 2025</p>
     </footer>
 
     <script>
@@ -608,7 +841,7 @@
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('pageLoader').classList.add('hidden');
-            }, 1000);
+            }, 1500);
         });
 
         // Countdown a la boda
@@ -628,7 +861,7 @@
                 document.getElementById('minutes').textContent = minutes;
                 document.getElementById('seconds').textContent = seconds;
             } else {
-                document.getElementById('countdown').innerHTML = '<p style="font-size: 2rem;">¡El día ha llegado! 💚</p>';
+                document.getElementById('countdown').innerHTML = '<p style="font-size: 2rem; color: #006040;">¡El día ha llegado! 💚</p>';
             }
         }
         setInterval(countdown, 1000);
@@ -666,6 +899,16 @@
                 }
             });
         });
+
+        // Parallax effect en scroll
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.photo-decorations');
+            parallaxElements.forEach((el, index) => {
+                const speed = 0.5 + (index * 0.1);
+                el.style.transform = `translateY(${scrolled * speed * 0.1}px) rotate(${scrolled * 0.05}deg)`;
+            });
+        });
     </script>
 </body>
-</html>
+</html
